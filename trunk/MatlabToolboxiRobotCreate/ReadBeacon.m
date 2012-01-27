@@ -46,17 +46,22 @@ try
         for i = 1:MAXARTAGSEEN
             idIndex = HEADER+(i-1)*4+1;
             id = typecast(uint8(packet(idIndex:idIndex+3)),'int32');
+            id = typecast(double(id), 'double');
             if id == 0 || id == -1
                 break;
             end
             xIndex = idIndex+4*MAXARTAGSEEN;
             x = typecast(uint8(packet(xIndex:xIndex+3)),'single');
+            x = typecast(double(x), 'double');
             yIndex = xIndex+4*MAXARTAGSEEN;
             y = typecast(uint8(packet(yIndex:yIndex+3)),'single');
+            y = typecast(double(y), 'double');
             zIndex = yIndex+4*MAXARTAGSEEN;
             z = typecast(uint8(packet(zIndex:zIndex+3)),'single') + BEACON_OFFSET;
+            z = typecast(double(z), 'double');
             yawIndex = zIndex+4*MAXARTAGSEEN;
             yaw = typecast(uint8(packet(yawIndex:yawIndex+3)),'single');
+            yaw = typecast(double(yaw), 'double');
 
             beacons = [beacons; id x y z yaw];
         end
