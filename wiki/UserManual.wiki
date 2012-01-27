@@ -44,6 +44,8 @@ cd beagleoncreate
 sudo ./main
 }}}
 
+*If you were asked for password, type in "cornell"*
+
 Once the program started running, the PuTTY session window should look like the picture shown below.
 
 http://beagleoncreate.googlecode.com/svn/trunk/doc/images/sshlogin.png
@@ -58,6 +60,8 @@ ports = CreateBeagleInit('192.168.1.141');
 The SSH session console should look like following picture now:
 
 http://beagleoncreate.googlecode.com/svn/trunk/doc/images/createbeagleinit.png
+
+
 
 == Calibration ==
 The calibration of the sensors is needed because each sonar and camera mounted position is different on every iRobot Create setup. Therefore, it is recommended to run the calibration process once before every experiment/lab.
@@ -105,7 +109,6 @@ _*This concludes the Beagle on Create User Manual.*_
  There are many things that can go wrong when you can't SSH into the Beagleboard. 
   # Check that the Wifi dongle's blue LED is lit. If not, try restart the Beagleboard by toggling the power of the iRobot Create.
   # Double check the IP address of the Beagleboard is correct when you put it into the PuTTY's configuration.
-  # If you can access the wireless router's page and know the username and password, try go to "192.168.1.1" on the browser and go to the *Status* tab -> *LAN* tab. You should see a list of IP address under *Active Clients*. If the Beagleboard's IP address is not there... get [mailto:ty244@cornell.edu?subject=MAE4180_BEAGLEONCREATE_PROBLEM Chuck].
 
  * *Sonar reading is NaN.*
  Sonar reading is NaN when the distance reading is more than 3 meters  or when the distance reading is less than 0.
