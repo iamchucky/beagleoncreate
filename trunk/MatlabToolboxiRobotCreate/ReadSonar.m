@@ -43,7 +43,7 @@ try
 		sonarFront = typecast(uint8(packet(17:20)),'single');
 		sonarRight = typecast(uint8(packet(21:24)),'single');
         if sonarLeft > 0
-            sonarLeft = sonarLeft + SONAR_OFFSET(1);
+            sonarLeft = sonarLeft + SONAR_OFFSET(3);
         else
             sonarLeft = NaN;
         end
@@ -53,7 +53,7 @@ try
             sonarFront = NaN;
         end
         if sonarRight > 0
-            sonarRight = sonarRight + SONAR_OFFSET(3);
+            sonarRight = sonarRight + SONAR_OFFSET(1);
         else
             sonarRight = NaN;
         end

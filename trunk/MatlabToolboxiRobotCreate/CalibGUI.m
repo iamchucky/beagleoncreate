@@ -108,15 +108,15 @@ while(DONE == 0)
 
     tag = ReadBeacon(ports.beacon);
     if ~isempty(tag)
-        set(handles.txtX,'String',num2str(tag(1).x));
-        set(handles.txtY,'String',num2str(tag(1).y));
-        set(handles.txtZ,'String',num2str(tag(1).z));
-        set(handles.txtYaw,'String',num2str(tag(1).yaw));
+        set(handles.txtX,'String',num2str(tag(1,2)));
+        set(handles.txtY,'String',num2str(tag(1,3)));
+        set(handles.txtZ,'String',num2str(tag(1,4)));
+        set(handles.txtYaw,'String',num2str(tag(1,5)));
     end
     dist = [ReadSonar(ports.sonar, 1) ReadSonar(ports.sonar, 2) ReadSonar(ports.sonar, 3)];
-    set(handles.txtDist1,'String',num2str(dist(1)));
+    set(handles.txtDist1,'String',num2str(dist(3)));
     set(handles.txtDist2,'String',num2str(dist(2)));
-    set(handles.txtDist3,'String',num2str(dist(3)));
+    set(handles.txtDist3,'String',num2str(dist(1)));
 
     pause(0.1)
 end
@@ -185,7 +185,7 @@ function btnCalibLeftSonar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-CalibSonar(handles, 1);
+CalibSonar(handles, 3);
 
 
 % --- Executes on button press in btnCalibFrontSonar.
@@ -203,7 +203,7 @@ function btnCalibRightSonar_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-CalibSonar(handles, 3);
+CalibSonar(handles, 1);
 
 function CalibSonar(handles, sonarNum)
 global SONAR_OFFSET;
@@ -212,10 +212,10 @@ global sonarCalib;
 global TEST_DISTANCES;
 global d_measured;
 
-sonarName{1} = 'Left';
+sonarName{3} = 'Left';
 sonarName{2} = 'Front';
-sonarName{3} = 'Right';
-btn = [handles.btnCalibLeftSonar handles.btnCalibFrontSonar handles.btnCalibRightSonar];
+sonarName{1} = 'Right';
+btn = [handles.btnCalibRightSonar handles.btnCalibFrontSonar handles.btnCalibLeftSonar];
 
 j = mod(sonarCalib(sonarNum),length(TEST_DISTANCES)) + 1;
 sonarCalib(sonarNum) = sonarCalib(sonarNum) + 1;
