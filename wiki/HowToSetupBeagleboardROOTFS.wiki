@@ -13,4 +13,12 @@ Add your content here.
 = From Production Copy =
 The production copy is what you get on the microSD card that came with your Beagleboard. The 4GB microSD card that came with the Beagleboard should have a label "Beta 4-26". The image file can be found from [http://circuitco.com/support/index.php?title=BeagleBoard-xM#BeagleBoard-xM_Rev_C_Image circuitco.com]
 
-Insert the microSD card with the production copy into the Beagleboard. Connect the serial cable onto the Beagleboard's DB9 connector. Power up the Beagleboard.
+When you are ready:
+ # Insert the microSD card with the production copy into the Beagleboard. 
+ # Connect the serial cable between the Beagleboard's DB9 connector and your computer's serial port. 
+ # Run PuTTY on your computer and connect to the serial port with speed of 115200 baudrate. 
+ # Power up the Beagleboard.
+
+Wait a couple minutes and let the Beagleboard start booting up as you can see in the PuTTY terminal window.
+
+[PUT PUTTY SERIAL CONNECTION PICTURE HERE]
