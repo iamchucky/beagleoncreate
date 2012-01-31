@@ -1,0 +1,16 @@
+#summary This page gives instructions on the steps for setting up the beagleboard with beagleoncreate program.
+
+= Introduction =
+
+Add your content here.
+
+= Requirements =
+ * Beagleboard-xM Rev. C
+ * 4GB microSD card
+ * Serial cable
+ * [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html PuTTY]
+
+= From Production Copy =
+The production copy is what you get on the microSD card that came with your Beagleboard. The 4GB microSD card that came with the Beagleboard should have a label "Beta 4-26". The image file can be found from [http://circuitco.com/support/index.php?title=BeagleBoard-xM#BeagleBoard-xM_Rev_C_Image circuitco.com]
+
+Insert the microSD card with the production copy into the Beagleboard. Connect the serial cable onto the Beagleboard's DB9 connector. Power up the Beagleboard.
