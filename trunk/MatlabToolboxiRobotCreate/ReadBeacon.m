@@ -47,7 +47,7 @@ try
             idIndex = HEADER+(i-1)*4+1;
             id = typecast(uint8(packet(idIndex:idIndex+3)),'int32');
             id = typecast(double(id), 'double');
-            if id == 0 || id == -1
+            if id == -1
                 break;
             end
             xIndex = idIndex+4*MAXARTAGSEEN;
