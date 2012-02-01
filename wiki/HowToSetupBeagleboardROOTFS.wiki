@@ -1,7 +1,9 @@
 #summary This page gives instructions on the steps for setting up the beagleboard with beagleoncreate program.
 
-= Introduction =
+= Table of contents =
+<wiki:toc max_depth="2" />
 
+= Introduction =
 The beagleoncreate program interfaces with 3 sonars and webcam through WiFi connection. The tasks of setting up a working robot lie in:
  * Setting up the wireless connection.
  * Installing the uvc video driver.
@@ -47,7 +49,7 @@ opkg install vim vim-syntax
 Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.vimrc .vimrc] under {{{~/}}}
 
 = Setup WiFi network =
-copy 8192cu.ko under {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}
+copy [http://beagleoncreate.googlecode.com/svn/trunk/doc/8192cu.ko 8192cu.ko] under {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}
 In the terminal, type in:
 {{{
 echo 8192cu >> /etc/modutils/8192cu
@@ -125,93 +127,132 @@ ifconfig
 Reboot and see if the desired network is connected with the ip address provided.
 
 = Setup PWM servo driver =
-
-
-
-
-
-
-
-
-
-copy servodrive_1.0-r100.6_beagleboard.ipk to beagleboard
-then cd to the folder where you copied the ipk file under on the beagleboard and to install, run:
+Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/servodrive_1.0-r100.6_beagleboard.ipk servodrive_1.0-r100.6_beagleboard.ipk] under {{{~/}}}
+{{{
+cd ~
 opkg install servodrive_1.0-r100.6_beagleboard.ipk
+}}}
 
-to auto load servodrive module on startup:
+To auto load {{{servodrive}}} module on startup:
+{{{
 echo servodrive >> /etc/modutils/servodrive
 update-modules
+reboot
 
-reboot, then run:
-lsmod to make sure servodrive is listed
+...
+
+lsmod
+}}}
+Make sure {{{servodrive}}} is listed
 
 NOTE: This PWM servo driver is compiled for linux 2.6.32 kernel. So if your kernel is different, download the source and refer to http://www.angstrom-distribution.org/building-angstrom for instruction on setting up openembedded toolchain.
 
 = Install USB Video Class driver =
+Executing following lines in the terminal:
+{{{
 opkg install kernel-module-uvcvideo
-to auto load uvcvideo module on startup:
 echo uvcvideo >> /etc/modutils/uvcvideo
 update-modules
+reboot
 
-reboot, then run:
-lsmod to make sure uvcvideo is listed
+...
+
+lsmod
+}}}
+Make sure {{{uvcvideo}}} is listed
 
 = Create new user =
+To create a new user "beagle", run following lines in the terminal:
+{{{
 useradd beagle
 passwd beagle
+}}}
+
+To give "beagle" sudo ability, first install sudo:
+{{{
 opkg install sudo
+}}}
+Then add "beagle" to the sudoer list:
+{{{
 vim /etc/sudoers
-append:
+}}}
+Append following lines into {{{/etc/sudoers}}}:
+{{{
 root	ALL=(ALL)	ALL
 beagle	ALL=(ALL)	ALL
+}}}
 
-copy .bashrc under /home/beagle/
-copy .vimrc under /home/beagle/
+Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.bashrc .bashrc] under {{{/home/beagle/}}}
 
-*Login {{{beagle}}} from now on*
+Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.vimrc .vimrc] under {{{/home/beagle/}}}
+
+*You should log in {{{beagle}}} from now on*
 
 = Install ARToolKitPlus library =
-requires task-native-sdk and cmake package:
+The [https://launchpad.net/artoolkitplus ARToolKitPlus] requires task-native-sdk and cmake package, run following command in the terminal:
+{{{
 sudo opkg install task-native-sdk cmake
-get gcc to work
+}}}
+
+To get gcc to work, run following lines in the terminal:
+{{{
 ln -s /lib/libgcc_s.so.1  /lib/libgcc_s.so
 ln -s /usr/lib/libstdc++.so.6.0.10  /lib/libstdc++.so
+}}}
 
-download the source and place in beagleboard under ~/
-untar the archive
+Download the [https://launchpad.net/artoolkitplus source] and place it in the Beagleboard under {{{~/}}} then run:
+{{{
+cd ~
+tar xvjf ARToolKitPlus-2.2.1.tar.bz2
 cd ARToolKitPlus-2.2.1/
 cmake -G “Unix Makefiles”
 make
 sudo make install DESTDIR=/
-
+}}}
 
 = Get code on Beagleboard =
+The [http://code.google.com/p/beagleoncreate/source/checkout beagleoncreate] code is hosted on the googlecode svn repository, run:
+{{{
 sudo opkg install subversion
 cd ~
 svn checkout https://beagleoncreate.googlecode.com/svn/trunk/ beagleoncreate --username yangchuck@gmail.com
 
+...
+
 sudo opkg install opencv opencv-dev libopencv-ml-dev libopencv-objdetect-dev libopencv-legacy-dev gstreamer-dev gst-plugins-base-dev
-try running:
+}}}
+
+Then try running:
+{{{
+cd beagleoncreate/
 make
+}}}
 
-copy these if needed:
-artoolkitplus.pc 
-opencv.pc 
-gstreamer-0.10.pc 
-gstreamer-app-0.10.pc 
-glib-2.0.pc
-gobject-2.0.pc
-gthread-2.0.pc
-gmodule-no-export-2.0.pc
-libxml-2.0.pc
-gstreamer-base-0.10.pc
-into /usr/lib/pkgconfig:
+Copy these if needed:
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/artoolkitplus.pc artoolkitplus.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/opencv.pc opencv.pc] 
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-0.10.pc gstreamer-0.10.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-app-0.10.pc gstreamer-app-0.10.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/glib-2.0.pc glib-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gobject-2.0.pc gobject-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gthread-2.0.pc gthread-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gmodule-no-export-2.0.pc gmodule-no-export-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/libxml-2.0.pc libxml-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-base-0.10.pc gstreamer-base-0.10.pc]
+
+into {{{/usr/lib/pkgconfig}}}:
+{{{
 sudo cp ~/*.pc /usr/lib/pkgconfig/
-type pkg-config --list-all to double check
+}}}
+Type {{{pkg-config --list-all}}} to double check
 
-this should generate a main file under the folder, type:
+After you executed {{{make}}} command, it should generate a main file under the folder, type:
+{{{
 sudo ./main
+}}}
+This will start the beagleoncreate program.
 
+----
 
 After the first copy of image is done. Follow this page to copy file system over:
 http://pixhawk.ethz.ch/wiki/tutorials/omap/copy_sd_card
