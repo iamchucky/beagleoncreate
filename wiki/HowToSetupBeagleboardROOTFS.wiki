@@ -44,10 +44,10 @@ Install Vim:
 {{{
 opkg install vim vim-syntax
 }}}
-Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.vimrc .vimrc] under {{{~/}}}
+Copy the [http://beagleoncreate.googlecode.com/svn/doc/.vimrc .vimrc] under {{{~/}}}
 
 = Setup WiFi network =
-copy [http://beagleoncreate.googlecode.com/svn/trunk/doc/8192cu.ko 8192cu.ko] under {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}
+copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}
 In the terminal, type in:
 {{{
 echo 8192cu >> /etc/modutils/8192cu
@@ -125,7 +125,7 @@ ifconfig
 Reboot and see if the desired network is connected with the ip address provided.
 
 = Setup PWM servo driver =
-Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/servodrive_1.0-r100.6_beagleboard.ipk servodrive_1.0-r100.6_beagleboard.ipk] under {{{~/}}}
+Copy the [http://beagleoncreate.googlecode.com/svn/doc/servodrive_1.0-r100.6_beagleboard.ipk servodrive_1.0-r100.6_beagleboard.ipk] under {{{~/}}}
 {{{
 cd ~
 opkg install servodrive_1.0-r100.6_beagleboard.ipk
@@ -180,9 +180,9 @@ root	ALL=(ALL)	ALL
 beagle	ALL=(ALL)	ALL
 }}}
 
-Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.bashrc .bashrc] under {{{/home/beagle/}}}
+Copy the [http://beagleoncreate.googlecode.com/svn/doc/.bashrc .bashrc] under {{{/home/beagle/}}}
 
-Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.vimrc .vimrc] under {{{/home/beagle/}}}
+Copy the [http://beagleoncreate.googlecode.com/svn/doc/.vimrc .vimrc] under {{{/home/beagle/}}}
 
 *You should log in {{{beagle}}} from now on*
 
@@ -227,16 +227,16 @@ make
 }}}
 
 Copy these if needed:
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/artoolkitplus.pc artoolkitplus.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/opencv.pc opencv.pc] 
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-0.10.pc gstreamer-0.10.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-app-0.10.pc gstreamer-app-0.10.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/glib-2.0.pc glib-2.0.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gobject-2.0.pc gobject-2.0.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gthread-2.0.pc gthread-2.0.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gmodule-no-export-2.0.pc gmodule-no-export-2.0.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/libxml-2.0.pc libxml-2.0.pc]
- * [http://beagleoncreate.googlecode.com/svn/trunk/doc/gstreamer-base-0.10.pc gstreamer-base-0.10.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/artoolkitplus.pc artoolkitplus.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/opencv.pc opencv.pc] 
+ * [http://beagleoncreate.googlecode.com/svn/doc/gstreamer-0.10.pc gstreamer-0.10.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/gstreamer-app-0.10.pc gstreamer-app-0.10.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/glib-2.0.pc glib-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/gobject-2.0.pc gobject-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/gthread-2.0.pc gthread-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/gmodule-no-export-2.0.pc gmodule-no-export-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/libxml-2.0.pc libxml-2.0.pc]
+ * [http://beagleoncreate.googlecode.com/svn/doc/gstreamer-base-0.10.pc gstreamer-base-0.10.pc]
 
 into {{{/usr/lib/pkgconfig}}}:
 {{{
