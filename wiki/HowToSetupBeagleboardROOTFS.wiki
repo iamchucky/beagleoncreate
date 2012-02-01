@@ -147,7 +147,7 @@ lsmod to make sure servodrive is listed
 
 NOTE: This PWM servo driver is compiled for linux 2.6.32 kernel. So if your kernel is different, download the source and refer to http://www.angstrom-distribution.org/building-angstrom for instruction on setting up openembedded toolchain.
 
-Install USB Video Class driver
+= Install USB Video Class driver =
 opkg install kernel-module-uvcvideo
 to auto load uvcvideo module on startup:
 echo uvcvideo >> /etc/modutils/uvcvideo
@@ -156,7 +156,7 @@ update-modules
 reboot, then run:
 lsmod to make sure uvcvideo is listed
 
-Create new user
+= Create new user =
 useradd beagle
 passwd beagle
 opkg install sudo
@@ -168,9 +168,9 @@ beagle	ALL=(ALL)	ALL
 copy .bashrc under /home/beagle/
 copy .vimrc under /home/beagle/
 
-Login beagle from now on
+*Login {{{beagle}}} from now on*
 
-Install ARToolKitPlus library
+= Install ARToolKitPlus library =
 requires task-native-sdk and cmake package:
 sudo opkg install task-native-sdk cmake
 get gcc to work
@@ -185,7 +185,7 @@ make
 sudo make install DESTDIR=/
 
 
-Get code on beagleboard
+= Get code on Beagleboard =
 sudo opkg install subversion
 cd ~
 svn checkout https://beagleoncreate.googlecode.com/svn/trunk/ beagleoncreate --username yangchuck@gmail.com
@@ -216,6 +216,6 @@ sudo ./main
 After the first copy of image is done. Follow this page to copy file system over:
 http://pixhawk.ethz.ch/wiki/tutorials/omap/copy_sd_card
 
-Note: the partition table of the destination sd card should be the same as the source sd card. I am only copying over the 4GB sd card that came with the beagleboard.
+*Note: the partition table of the destination sd card should be the same as the source sd card. I am only copying over the 4GB sd card that came with the beagleboard.
 
-When you are writing from image to sdcard, be sure to unmount the partition
+When you are writing from image to sdcard, be sure to unmount the partition*
