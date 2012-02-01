@@ -2,7 +2,12 @@
 
 = Introduction =
 
-Add your content here.
+The beagleoncreate program interfaces with 3 sonars and webcam through WiFi connection. The tasks of setting up a working robot lie in:
+ * Setting up the wireless connection.
+ * Installing the uvc video driver.
+ * Compile and install ARToolKitPlus library.
+ * Get beagleoncreate from googlecode svn.
+This page will guide you through setting up these setups to get a working robot.
 
 = Requirements =
  * Beagleboard-xM Rev. C
@@ -22,3 +27,101 @@ When you are ready:
 Wait a couple minutes and let the Beagleboard start booting up as you can see in the PuTTY terminal window.
 
 [PUT PUTTY SERIAL CONNECTION PICTURE HERE]
+
+To login, type:
+{{{
+login as: root
+Password: (no password)
+}}}
+
+First, run a package list and system update:
+{{{
+opkg update
+opkg upgrade
+}}}
+
+Install Vim:
+{{{
+opkg install vim vim-syntax
+}}}
+Copy the [http://beagleoncreate.googlecode.com/svn/trunk/doc/.vimrc .vimrc] under {{{~/}}}
+
+= Setup WiFi network =
+copy 8192cu.ko under {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}
+In the terminal, type in:
+{{{
+echo 8192cu >> /etc/modutils/8192cu
+update-modules
+reboot
+
+...
+
+}}}
+After the Beagleboard has rebooted, execute:
+{{{
+lsmod
+}}}
+A list of currently running modules is shown. Make sure {{{8192cu}}} is listed.
+
+*NOTE: This wifi driver is compiled for linux 2.6.32 kernel. So if your kernel is different, download the source and compile it as per instruction [http://yetanotherhackersblog.wordpress.com/2010/11/20/streaming-uvc-webcam-video-over-802-11n-with-a-beagleboard/ here]*
+
+After the confirmation of the {{{8192cu}}} module, remove networkmanager:
+{{{
+opkg remove networkmanager --force-removal-of-dependent-packages
+}}}
+Without removing network manager, it will force the dhclient not receiving IP address.
+
+Next, edit {{{/etc/network/interfaces}}} :
+{{{
+vim /etc/network/interfaces
+}}}
+Append following lines in the {{{/etc/network/interfaces}}}:
+{{{
+#auto usb0
+iface usb0 inet dhcp
+
+auto wlan0
+iface wlan0 inet dhcp
+        wpa-driver wext
+        wpa-conf /etc/wpa_supplicant.conf
+
+auto wlan1
+iface wlan1 inet dhcp
+        wpa-driver wext
+        wpa-conf /etc/wpa_supplicant.conf
+}}}
+*Notice the {{{auto usb0}}} line is commented out.*
+
+Edit {{{/etc/wpa_supplicant.conf}}}:
+{{{
+vim /etc/wpa_supplicant.conf
+}}}
+Append following lines in the {{{/etc/wpa_supplicant.conf}}}:
+{{{
+network={
+        ssid="Create"
+        key_mgmt=WPA-PSK
+        psk="badbeef123"
+        priority=50
+        disabled=0
+}
+
+network={
+        ssid="RedRover"
+        key_mgmt=NONE
+        priority=20
+        disabled=0
+}
+}}}
+Comment out all other network by adding "#" in front of them.
+
+{{{
+reboot
+
+...
+
+ifconfig
+}}}
+Reboot and see if the desired network is connected with the ip address provided.
+
+= Setup PWM servo driver =
