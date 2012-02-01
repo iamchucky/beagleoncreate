@@ -1,7 +1,7 @@
 /**
 @mainpage
 
-This is a test application.
+Beagle on Create is a project that utilizes Beagleboard with a robotic development platform iRobot Create. The Beagleboard serves as the sensor interface as well as teleoperation device for the Create. The sensors including an USB webcam and 3 sonars.
 
 @author Chuck Yang ty244
 @date 1/15/2012
