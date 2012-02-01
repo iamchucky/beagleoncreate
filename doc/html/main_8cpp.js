@@ -30,7 +30,7 @@ var main_8cpp =
     [ "remoteVideo", "main_8cpp.html#a1258d663950eac9f76fd081019ff0a70", null ],
     [ "sensorThread", "main_8cpp.html#ac9cbb61449fe1bafda238aa804fdae32", null ],
     [ "showDebugMsg", "main_8cpp.html#a2b0ff7ec87d61d6752221d0652e4728a", null ],
-    [ "sonar1", "main_8cpp.html#a58598bdf816c2265a90e0bc34553b367", null ],
-    [ "sonar2", "main_8cpp.html#a57ed540114593474f29988a194a0e3dc", null ],
-    [ "sonar3", "main_8cpp.html#a1f19b5ad4b31ffafd9fdd24c09bd8e4f", null ]
+    [ "sonar1", "main_8cpp.html#a4e0e038188ccf38607857c41d6974ce2", null ],
+    [ "sonar2", "main_8cpp.html#ab6780162a9eed1218cde4b8356c4ca8a", null ],
+    [ "sonar3", "main_8cpp.html#a96ba31879fb73cd5c8b4a94e8921a7ac", null ]
 ];
