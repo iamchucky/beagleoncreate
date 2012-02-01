@@ -16,11 +16,11 @@ An operational Beagle on Create setup includes following items:
 
 Please double check that the items listed above is present and is properly connected as shown in the pictures below.
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/setupfront.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupfront.jpg
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/setupback.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupback.jpg
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/setupcloseup.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupcloseup.jpg
 
 = Ready for action =
 
@@ -30,7 +30,7 @@ Press the power button on the iRobot Create to turn on the system. Since the Bea
 
 To be able to gain access to the Beagleboard, you first need to have SSH client such as [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html PuTTY] to allow you SSH into the Beagleboard. In addition, you have to know the IP address that is associated with the Beagleboard you wanted to connect to. I will use "192.168.1.141" in this guide. Run the PuTTY and configure the settings as shown in the picture below. Optionally, you can save the session configurations for easier access later by clicking at save button.
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/puttysettings.png
+http://beagleoncreate.googlecode.com/svn/doc/images/puttysettings.png
 
 Click "Open" to initiate the connection to the Beagleboard. A console will pop up to ask for username and password. Type in:
 {{{
@@ -48,7 +48,7 @@ sudo ./main
 
 Once the program started running, the PuTTY session window should look like the picture shown below.
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/sshlogin.png
+http://beagleoncreate.googlecode.com/svn/doc/images/sshlogin.png
 
 Now you are ready to control the Beagleboard and Create using MATLAB. So *minimize* the PuTTY console, open up MATLAB program and start running your code.
 
@@ -59,7 +59,7 @@ ports = CreateBeagleInit('192.168.1.141');
 
 The SSH session console should look like following picture now:
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/createbeagleinit.png
+http://beagleoncreate.googlecode.com/svn/doc/images/createbeagleinit.png
 
 
 
@@ -75,7 +75,7 @@ CalibGUI(ports);
 
 The calibration GUI provides you a grayscale version of the video stream from the webcam on the Create as well as both ARtag pose measurement and 3 sonar distance measurements as shown in the picture below.
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/calibgui.png
+http://beagleoncreate.googlecode.com/svn/doc/images/calibgui.png
 
 === Calibrate sonars ===
  # Click on the *Calibrate Left/Front/Right Sonar* button to start the calibration process for of the corresponding sonar. The calibration GUI will then ask you to place a card board in front of the corresponding sonar at 4 known distances. 
@@ -98,7 +98,7 @@ When you are done with the program, you can properly close the port and quit the
 BeagleShutdown(ports);
 }}}
 
-http://beagleoncreate.googlecode.com/svn/trunk/doc/images/beagleshutdown.png
+http://beagleoncreate.googlecode.com/svn/doc/images/beagleshutdown.png
 
 _*This concludes the Beagle on Create User Manual.*_
 
