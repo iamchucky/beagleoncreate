@@ -28,8 +28,6 @@ When you are ready:
 
 Wait a couple minutes and let the Beagleboard start booting up as you can see in the PuTTY terminal window.
 
-[PUT PUTTY SERIAL CONNECTION PICTURE HERE]
-
 To login, type:
 {{{
 login as: root
