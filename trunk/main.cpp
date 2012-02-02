@@ -186,14 +186,11 @@ void* SonarSender(void* arg)
 		usleep(SONAR_WAIT_TIME);
 		dist3 = sonar3->Run();			
 		usleep(SONAR_WAIT_TIME);
-		if (dist1 != -1.f )//&& dist2 != -1.f && dist3 != -1.f)
-		{
-			// send out dist
-			packet.u.sonar.dist1 = dist1;
-			packet.u.sonar.dist2 = dist2;
-			packet.u.sonar.dist3 = dist3;
-			if (sendto(remoteSockUDP, (unsigned char*)&packet, SONAR_PACKET_SIZE, 0, (const struct sockaddr *)&remoteSonar, sizeof(struct sockaddr_in)) < 0) printf("sendto\n");
-		}
+		// send out dist
+		packet.u.sonar.dist1 = dist1;
+		packet.u.sonar.dist2 = dist2;
+		packet.u.sonar.dist3 = dist3;
+		if (sendto(remoteSockUDP, (unsigned char*)&packet, SONAR_PACKET_SIZE, 0, (const struct sockaddr *)&remoteSonar, sizeof(struct sockaddr_in)) < 0) printf("sendto\n");
 		usleep(SONAR_MEASURE_RATE);
 	}
 	pthread_exit(NULL);
