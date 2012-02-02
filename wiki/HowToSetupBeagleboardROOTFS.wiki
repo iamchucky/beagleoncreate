@@ -134,7 +134,7 @@ reboot
 
 lsmod
 }}}
-Make sure {{{ftdi-sio}}} is listed.
+Make sure both {{{ftdi_sio}}} and {{{usbserial}}} are listed.
 
 = Setup PWM servo driver =
 Copy the [http://beagleoncreate.googlecode.com/svn/doc/servodrive_1.0-r100.6_beagleboard.ipk servodrive_1.0-r100.6_beagleboard.ipk] under {{{~/}}}
