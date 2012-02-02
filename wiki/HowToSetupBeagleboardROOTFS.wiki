@@ -124,6 +124,18 @@ ifconfig
 }}}
 Reboot and see if the desired network is connected with the ip address provided.
 
+= Setup USB-Serial driver =
+Execute following lines:
+{{{
+opkg install kernel-module-ftdi-sio
+reboot
+
+...
+
+lsmod
+}}}
+Make sure {{{ftdi-sio}}} is listed.
+
 = Setup PWM servo driver =
 Copy the [http://beagleoncreate.googlecode.com/svn/doc/servodrive_1.0-r100.6_beagleboard.ipk servodrive_1.0-r100.6_beagleboard.ipk] under {{{~/}}}
 {{{
