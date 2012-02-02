@@ -157,6 +157,7 @@ int Create::RunSerialHandler()
 					printf("%i ", int(buf[i]));
 				}
 				printf("\n");
+				InitSerial();
 			}
 
 			if (FD_ISSET(_fd, &output))
