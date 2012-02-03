@@ -64,10 +64,8 @@ int Create::InitSerial()
 
 	// configure port
 	struct termios portSettings;
-	
-	// make raw mode
-	cfmakeraw(&portSettings);
-	
+	tcgetattr( _fd, &portSettings);
+		
 	if (cfsetispeed(&portSettings, CREATE_SERIAL_BRATE) != 0)
 		printf("Failed setting cfsetispeed\n");
 	if (cfsetospeed(&portSettings, CREATE_SERIAL_BRATE) != 0)
@@ -78,6 +76,8 @@ int Create::InitSerial()
 	portSettings.c_cflag &= ~CSTOPB;
 	portSettings.c_cflag &= ~CSIZE;
 	portSettings.c_cflag |= CS8;
+	// make raw mode
+	cfmakeraw(&portSettings);
 
 	if (tcsetattr(_fd, TCSANOW, &portSettings) != 0)
 		printf("Failed pushing portSettings\n");
@@ -157,7 +157,6 @@ int Create::RunSerialHandler()
 					printf("%i ", int(buf[i]));
 				}
 				printf("\n");
-				InitSerial();
 			}
 
 			if (FD_ISSET(_fd, &output))
