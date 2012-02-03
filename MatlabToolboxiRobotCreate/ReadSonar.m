@@ -61,8 +61,10 @@ try
     distSonar = [sonarRight sonarFront sonarLeft sonarBack];
     if isempty(varargin)
         distance = distSonar(2);
-    else
+    elseif varargin(1) ~= 0
         distance = distSonar(varargin{1});
+    else
+        distance = distSonar;
     end
 catch err
     disp('WARNING:  Function did not terminate correctly.  Output may be unreliable.')
