@@ -61,7 +61,7 @@ try
     distSonar = [sonarRight sonarFront sonarLeft sonarBack];
     if isempty(varargin)
         distance = distSonar(2);
-    elseif varargin(1) ~= 0
+    elseif varargin{1} ~= 0
         distance = distSonar(varargin{1});
     else
         distance = distSonar;
