@@ -113,7 +113,8 @@ while(DONE == 0)
         set(handles.txtZ,'String',num2str(tag(1,4)));
         set(handles.txtYaw,'String',num2str(tag(1,5)));
     end
-    dist = [ReadSonar(ports.sonar, 1) ReadSonar(ports.sonar, 2) ReadSonar(ports.sonar, 3)];
+    dist = ReadSonar(ports.sonar, 0);
+    dist = dist(1:3);
     set(handles.txtDist1,'String',num2str(dist(3)));
     set(handles.txtDist2,'String',num2str(dist(2)));
     set(handles.txtDist3,'String',num2str(dist(1)));
