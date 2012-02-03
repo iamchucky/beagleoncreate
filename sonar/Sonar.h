@@ -10,7 +10,7 @@
 /*! The udp port number for sending sonar measurement. */
 #define SONAR_PORT 8833
 /*! time in usec before next measurement. */
-#define SONAR_MEASURE_RATE 100000
+#define SONAR_MEASURE_RATE 40000
 /*! time in usec before switch to other sonar. */
 #define SONAR_WAIT_TIME	10000
 
