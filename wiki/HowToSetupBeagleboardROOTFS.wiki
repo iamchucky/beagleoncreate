@@ -1,4 +1,4 @@
-#summary This page gives instructions on the steps for setting up the beagleboard with beagleoncreate program.
+#summary Instructions on the steps for setting up the beagleboard with beagleoncreate program.
 
 = Table of contents =
 <wiki:toc max_depth="2" />
