@@ -24,5 +24,10 @@ http://beagleoncreate.googlecode.com/svn/doc/images/powerblockdiagram.png
 == Sensors ==
 The USB webcam can be plugged into the [http://beagleboard.org/ BeagleBoard-xM]'s USB port and doesn't require extra power source. The three [http://www.parallax.com/tabid/768/ProductID/92/Default.aspx PING))) Ultrasonic Distance Sensors] however requires 5V signals in order to perform the measurement, the details can be found [http://www.parallax.com/Portals/0/Downloads/docs/prod/acc/28015-PING-v1.6.pdf here]. Therefore, we utilized the the GPIO pins from the expansion connectors on the [http://beagleboard.org/ BeagleBoard-xM] through a voltage level translator IC [http://www.ti.com/lit/ds/symlink/txb0108.pdf TXB0108] from TI, since the GPIO pin voltage level from the [http://beagleboard.org/ BeagleBoard-xM] is 1.8V and the sonar requires 5V signals. To see the detail connections regarding the voltage level shifter, see the schematic for [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GpioPowerAddon].
 = Software =
+== Components ==
+ * Create
+ * Camera
+ * Sonar
+ * Control
 
 == High-Level Block diagram ==
