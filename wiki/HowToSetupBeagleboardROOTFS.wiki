@@ -42,8 +42,39 @@ Password: (no password)
 = Setup WiFi network =
 To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}.
 You have two options:
- # By [http://elinux.org/BeagleBoard/James#Optionally:_give_your_Beagleboard_a_fixed_IP_address giving static IP address to Beagleboard] and use [http://winscp.net/eng/download.php WinSCP] to copy it through Ethernet/wired connection.
- # OR by mounting microSD card on your Linux machine and:
+
+1. By giving static IP address to Beagleboard and use [http://winscp.net/eng/download.php WinSCP] to copy it through Ethernet/wired connection:
+ Connect an Ethernet cable between the Beagleboard and a router. Edit {{{/etc/network/interfaces}}} :
+{{{
+vi /etc/network/interfaces
+}}}
+ Append following lines in the {{{/etc/network/interfaces}}}:
+{{{
+auto usb0
+iface usb0 inet static
+       address 192.168.1.140
+       netmask 255.255.255.0
+       network 192.168.1.1
+       gateway 192.168.1.1
+}}}
+ Also in order to have DNS working create/edit the file {{{/etc/resolv.conf}}}. 
+{{{
+vi /etc/resolv.conf
+}}}
+ You should add lines like:
+{{{
+nameserver 192.168.1.1
+}}}
+ Then reboot:
+{{{
+reboot
+
+...
+}}}
+ Use [http://winscp.net/eng/download.php WinSCP] to copy it through Ethernet/wired connection.
+
+2. OR by mounting microSD card on your Linux machine and:
+ To copy, run:
 {{{
 cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
 }}}
