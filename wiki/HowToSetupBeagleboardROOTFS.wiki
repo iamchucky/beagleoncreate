@@ -22,7 +22,10 @@ This page will guide you through setting up these setups to get a working robot.
 = From Production Copy =
 The production copy is what you get on the microSD card that came with your Beagleboard. The 4GB microSD card that came with the Beagleboard should have a label "Beta 4-26". The image file can be found from [http://circuitco.com/support/index.php?title=BeagleBoard-xM#BeagleBoard-xM_Rev_C_Image circuitco.com] if you don't have the production copy with your microSD card.
 
-To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}} by mounting microSD card on your Linux machine and:
+To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}.
+You have two options:
+ # By [http://elinux.org/BeagleBoard/James#Optionally:_give_your_Beagleboard_a_fixed_IP_address giving static IP address to Beagleboard] and use [http://winscp.net/eng/download.php WinSCP] to copy it.
+ # by mounting microSD card on your Linux machine and:
 {{{
 cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
 }}}
