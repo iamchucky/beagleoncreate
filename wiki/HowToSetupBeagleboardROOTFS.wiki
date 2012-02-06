@@ -17,22 +17,12 @@ This page will guide you through setting up these setups to get a working robot.
  * Serial cable
  * [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html PuTTY]
  * Internet connection
- * Access to a Linux machine or virtual machine with Linux.
+ * (optional) Access to a Linux machine or virtual machine with Linux.
 
 = From Production Copy =
 The production copy is what you get on the microSD card that came with your Beagleboard. The 4GB microSD card that came with the Beagleboard should have a label "Beta 4-26". The image file can be found from [http://circuitco.com/support/index.php?title=BeagleBoard-xM#BeagleBoard-xM_Rev_C_Image circuitco.com] if you don't have the production copy with your microSD card.
 
-To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}.
-You have two options:
- # By [http://elinux.org/BeagleBoard/James#Optionally:_give_your_Beagleboard_a_fixed_IP_address giving static IP address to Beagleboard] and use [http://winscp.net/eng/download.php WinSCP] to copy it.
- # by mounting microSD card on your Linux machine and:
-{{{
-cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
-}}}
 
-*NOTE: This wifi driver is compiled for linux 2.6.32 kernel. So if your kernel is different, download the source and compile it as per instruction [http://yetanotherhackersblog.wordpress.com/2010/11/20/streaming-uvc-webcam-video-over-802-11n-with-a-beagleboard/ here]*
-
-After you are done copying the module, unmount and eject the microSD card.
 
 
 When you are ready:
@@ -50,6 +40,17 @@ Password: (no password)
 }}}
 
 = Setup WiFi network =
+To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}.
+You have two options:
+ # By [http://elinux.org/BeagleBoard/James#Optionally:_give_your_Beagleboard_a_fixed_IP_address giving static IP address to Beagleboard] and use [http://winscp.net/eng/download.php WinSCP] to copy it through Ethernet/wired connection.
+ # OR by mounting microSD card on your Linux machine and:
+{{{
+cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
+}}}
+ After you are done copying the module, unmount and eject the microSD card.
+
+*NOTE: This wifi driver is compiled for linux 2.6.32 kernel. So if your kernel is different, download the source and compile it as per instruction [http://yetanotherhackersblog.wordpress.com/2010/11/20/streaming-uvc-webcam-video-over-802-11n-with-a-beagleboard/ here]*
+
 In the terminal, type in:
 {{{
 echo 8192cu >> /etc/modutils/8192cu
@@ -281,4 +282,4 @@ http://pixhawk.ethz.ch/wiki/tutorials/omap/copy_sd_card
 
 *Note: the partition table of the destination sd card should be the same as the source sd card. I am only copying over the 4GB sd card that came with the beagleboard.
 
-When you are writing from image to sdcard, be sure to unmount the partition*
+When you are writing from image to sdcard, be sure to *unmount* the partition*
