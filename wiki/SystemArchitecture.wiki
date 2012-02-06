@@ -3,10 +3,8 @@
 = Table of contents =
 <wiki:toc max_depth="2" />
 
-= Overview =
-
-
-= Components =
+= Hardware =
+== Components ==
  * [http://store.irobot.com/shop/index.jsp?categoryId=3311368 iRobot Create]
  * [http://beagleboard.org/ BeagleBoard-xM]
  * [http://www.amazon.com/Microsoft-LifeCam-VX-700/dp/B002JXKGFA Microsoft LifeCam VX-700 USB Webcam]
@@ -14,6 +12,17 @@
  * [http://www.newegg.com/Product/Product.aspx?Item=N82E16833315091 WiFi Adapter]
  * [http://store.irobot.com/product/index.jsp?productId=2818673 iRobot USB Cable]
  * [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GPIO Power Addon board] _[http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/gerber/gerber.zip gerber]_
+
+== High-Level Block diagram ==
+
  
-= Power =
+== Power ==
+http://beagleoncreate.googlecode.com/svn/doc/images/powerblockdiagram.png
+
 The [http://www.irobot.com/filelibrary/pdfs/hrd/create/Create%20Open%20Interface_v2.pdf iRobot Create's Cargo Bay Connector] provide battery ground and voltage in order to power additional sensors and peripherals. We utilized the Create's battery voltage (~16V) to power the [http://beagleboard.org/ BeagleBoard-xM] (5V). The [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GPIO Power Addon board] has voltage converter to convert 16V power down to both 5V and 12V. In this case, we grab pin 10 (Switched Vpwr) and pin 21 (GND) from the Create Cargo Bay Connector and feed it into [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GPIO Power Addon board] to produce 5V power for the [http://beagleboard.org/ BeagleBoard-xM].
+
+== Sensors ==
+The USB webcam can be plugged into the [http://beagleboard.org/ BeagleBoard-xM]'s USB port and doesn't require extra power source. The three [http://www.parallax.com/tabid/768/ProductID/92/Default.aspx PING))) Ultrasonic Distance Sensors] however requires 5V signals in order to perform the measurement, the details can be found [http://www.parallax.com/Portals/0/Downloads/docs/prod/acc/28015-PING-v1.6.pdf here]. Therefore, we utilized the the GPIO pins from the expansion connectors on the [http://beagleboard.org/ BeagleBoard-xM] through a voltage level translator IC [http://www.ti.com/lit/ds/symlink/txb0108.pdf TXB0108] from TI, since the GPIO pin voltage level from the [http://beagleboard.org/ BeagleBoard-xM] is 1.8V and the sonar requires 5V signals. To see the detail connections regarding the voltage level shifter, see the schematic for [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GpioPowerAddon].
+= Software =
+
+== High-Level Block diagram ==
