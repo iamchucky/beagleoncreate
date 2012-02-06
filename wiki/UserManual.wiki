@@ -12,7 +12,7 @@ An operational Beagle on Create setup includes following items:
  * Three [http://www.parallax.com/tabid/768/ProductID/92/Default.aspx PING))) Ultrasonic Distance Sensor]
  * [http://www.newegg.com/Product/Product.aspx?Item=N82E16833315091 WiFi Adapter]
  * [http://store.irobot.com/product/index.jsp?productId=2818673 iRobot USB Cable]
- * GPIO Power Addon board
+ * [http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/GpioPowerAddon.pdf GPIO Power Addon board] _[http://beagleoncreate.googlecode.com/svn/GpioPowerAddon/gerber/gerber.zip gerber]_
 
 Please double check that the items listed above is present and is properly connected as shown in the pictures below.
 
