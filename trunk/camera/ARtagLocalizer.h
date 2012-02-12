@@ -14,7 +14,7 @@ class ARtagLocalizer
 public:
 	ARtagLocalizer();
 	~ARtagLocalizer();
-	int initARtagPose(int width, int height, float markerWidth, float x_offset = 0.f, float y_offset = 0.f, float yaw_offset = 0.f, float ffactor = 0.97);
+	int initARtagPose(int width, int height, float markerWidth, int arThres = 50, float x_offset = 0.f, float y_offset = 0.f, float yaw_offset = 0.f, float ffactor = 0.97);
 	bool getARtagPose(IplImage * src, IplImage * dst, int camID);
 	ARtag * getARtag(int index);
 	int getARtagSize();
@@ -34,6 +34,7 @@ private:
 	float yoffset;
 	float yawoffset;
 	float fudge;
+	int arThreshold;
 
 	std::vector<ARtag> mytag;
 	float patternWidth_;
