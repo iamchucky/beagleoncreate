@@ -41,6 +41,7 @@ ARtagLocalizer::ARtagLocalizer()
 	xoffset = 0;
 	yoffset = 0;
 	fudge = FUDGE_FACTOR;
+	arThreshold = 50;
 }
 
 /*!	\fn ARtagLocalizer::~ARtagLocalizer()
@@ -56,12 +57,13 @@ ARtagLocalizer::~ARtagLocalizer()
  * 	\param width the width of the image input.
  * 	\param height the height of the image input.
  * 	\param markerWidth the width of the ARtag in CM which determines the size of the ARtag used.
+ *  \param arThres the threshold value for binary thresholding the gray scale image. i.e. value < arThres = black else white
  * 	\param x_offset the offset of x in meter.
  * 	\param y_offset the offset of y in meter.
  *  \param ffactor the fudge factor to be multiplied on x and y estimation.
  * 	\return 0 on success -1 if failed.
  */
-int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, float x_offset, float y_offset, float yaw_offset, float ffactor)
+int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, int arThres, float x_offset, float y_offset, float yaw_offset, float ffactor)
 {
 	// create a tracker that does:
 	//  - 6x6 sized marker images
@@ -75,6 +77,7 @@ int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, floa
 	patternCenter_[0] = patternCenter_[1] = 0.0;
 	setARtagOffset(x_offset, y_offset, yaw_offset);
 	fudge = ffactor;
+	arThreshold = arThres;
 
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 	// load a camera file. 
@@ -93,7 +96,7 @@ int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, floa
 	tracker->setBorderWidth(THIN_PATTERN_BORDER);
 
 	// set a threshold. alternatively we could also activate automatic thresholding
-	tracker->setThreshold(100);
+	tracker->setThreshold(arThreshold);
 
 	// let's use lookup-table undistortion for high-speed
 	// note: LUT only works with images up to 1024x1024
