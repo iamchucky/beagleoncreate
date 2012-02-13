@@ -41,7 +41,7 @@ ARtagLocalizer::ARtagLocalizer()
 	xoffset = 0;
 	yoffset = 0;
 	fudge = FUDGE_FACTOR;
-	arThreshold = 50;
+	arThreshold = 80;
 }
 
 /*!	\fn ARtagLocalizer::~ARtagLocalizer()
@@ -97,6 +97,7 @@ int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, int 
 
 	// set a threshold. alternatively we could also activate automatic thresholding
 	tracker->setThreshold(arThreshold);
+	tracker->activateAutoThreshold(true);
 
 	// let's use lookup-table undistortion for high-speed
 	// note: LUT only works with images up to 1024x1024
@@ -152,7 +153,7 @@ bool ARtagLocalizer::getARtagPose(IplImage* src, IplImage* dst, int camID)
 
 	float modelViewMatrix_[16];
 	for(int m = 0; m < numMarkers; ++m) {
-		if(markers[m].id != -1 && markers[m].cf >= 0.75) {
+		if(markers[m].id != -1 && markers[m].cf >= 0.50) {
 			tracker->calcOpenGLMatrixFromMarker(&markers[m], patternCenter_, patternWidth_, modelViewMatrix_);
 			float x = modelViewMatrix_[12] / 1000.0;
 			float y = modelViewMatrix_[13] / 1000.0;
