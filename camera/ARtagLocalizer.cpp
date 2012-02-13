@@ -105,8 +105,8 @@ int ARtagLocalizer::initARtagPose(int width, int height, float markerWidth, int 
 
 	// RPP is more robust than ARToolKit's standard pose estimator but uses more CPU resource
 	// so using standard pose estimator instead
-	tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_ORIGINAL);
-	//tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
+	//tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_ORIGINAL);
+	tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
 
 	// switch to simple ID based markers
 	// use the tool in tools/IdPatGen to generate markers
