@@ -17,6 +17,11 @@
 */
 #define NCHANNELS 3
 
+#define ARTHRES 50
+#define BIMGWIDTH 160
+#define BIMGHEIGHT 120
+#define BROADCASTIMG false
+
 using namespace cv;
 
 /*! The only Camera object that this program should have. */
@@ -135,10 +140,12 @@ GstFlowReturn new_buffer (GstAppSink *app_sink, gpointer user_data)
 //		printf("No artag in the view.\n");
 	}
 	camera->SendARtag();
-	if (camera->isBroadcast())
+	
+	if (camera->isBroadcast() && BROADCASTIMG)
 	{
-		IplImage* grayrz = cvCreateImage(cvSize(160,120), IPL_DEPTH_8U, 1);
+		IplImage* grayrz = cvCreateImage(cvSize(BIMGWIDTH,BIMGHEIGHT), IPL_DEPTH_8U, 1);
 		cvResize(camera->gray, grayrz);
+		cvThreshold(grayrz, grayrz, ARTHRES, 255, CV_THRESH_BINARY);
 		camera->SendImage(grayrz);
 		cvReleaseImage(&grayrz);
 	}
@@ -170,7 +177,7 @@ int Camera::Setup()
 	loop = g_main_loop_new(NULL,FALSE);
 
 	// Initializing ARtagLocalizer
-	if (ar->initARtagPose(320, 240, 180.f) != 0)
+	if (ar->initARtagPose(320, 240, 180.f, ARTHRES) != 0)
 	{
 		printf("Failed to init ARtagLocalizer!\n");
 		return -1;
