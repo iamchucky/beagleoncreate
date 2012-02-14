@@ -104,10 +104,11 @@ global tag;
 
 while(DONE == 0)
     
-    PlotCreateVideo(1);
+%     PlotCreateVideo(1);
 
     tag = ReadBeacon(ports.beacon);
     if ~isempty(tag)
+        set(handles.txtID,'String',num2str(tag(1,1)));
         set(handles.txtX,'String',num2str(tag(1,2)));
         set(handles.txtY,'String',num2str(tag(1,3)));
         set(handles.txtZ,'String',num2str(tag(1,4)));
