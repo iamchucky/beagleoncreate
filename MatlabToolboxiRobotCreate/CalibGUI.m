@@ -113,6 +113,12 @@ while(DONE == 0)
         set(handles.txtY,'String',num2str(tag(1,3)));
         set(handles.txtZ,'String',num2str(tag(1,4)));
         set(handles.txtYaw,'String',num2str(tag(1,5)));
+    else
+        set(handles.txtID,'String',num2str(0));
+        set(handles.txtX,'String',num2str(0));
+        set(handles.txtY,'String',num2str(0));
+        set(handles.txtZ,'String',num2str(0));
+        set(handles.txtYaw,'String',num2str(0));
     end
     dist = ReadSonar(ports.sonar, 0);
     dist = dist(1:3);
@@ -147,7 +153,7 @@ if cameraCalib == 1
     % Show explanation message
     startstr = sprintf('\nStarting camera beacon calibration!\n(NOTE: For calibration, make sure you have good lighting');
 end
-str = strcat(startstr,sprintf('\n(Step %d/%d) Please place the ARtag %gcm (%gfeet) away', j, length(TEST_DISTANCES), TEST_DISTANCES(j)*100), TEST_DISTANCES(j)/0.3048);
+str = strcat(startstr,sprintf('\n(Step %d/%d) Please place the ARtag %gcm (%gfeet) away', j, length(TEST_DISTANCES), TEST_DISTANCES(j)*100, TEST_DISTANCES(j)/0.3048));
 set(handles.txtMsg,'String', str);
 
 if cameraCalib == length(TEST_DISTANCES)
