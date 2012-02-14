@@ -168,7 +168,6 @@ void* CreateTCPListener(void* arg)
  */
 void* SonarSender(void* arg)
 {
-	setpriority(PRIO_PROCESS, 0, -20);
 	float dist1 = -1.f;
 	float dist2 = -1.f;
 	float dist3 = -1.f;
@@ -222,20 +221,22 @@ void* StreamSensorData(void* arg)
 	sonar1 = new Sonar(SONAR_GPIO1);
 	sonar2 = new Sonar(SONAR_GPIO2);
 	sonar3 = new Sonar(SONAR_GPIO3);
-
-	// run camera
-	pthread_t cameraThread;
-	printf("Camera Thread: %d.\n", 
-		pthread_create(&cameraThread, NULL, RunARtagVideo, NULL));
 	
 	// run create control	
 	pthread_t createSerialThread;
 	printf("iRobot Create SerialHandler Thread: %d.\n", 
 		pthread_create(&createSerialThread, NULL, CreateSerialHandler, NULL));
-
+		
 	pthread_t createTCPThread;
 	printf("iRobot Create TCPListner Thread: %d.\n", 
 		pthread_create(&createTCPThread, NULL, CreateTCPListener, NULL));
+		
+	sleep(1000);
+
+	// run camera
+	pthread_t cameraThread;
+	printf("Camera Thread: %d.\n", 
+		pthread_create(&cameraThread, NULL, RunARtagVideo, NULL));
 		
 	// run sonar
 	pthread_t sonarThread;
