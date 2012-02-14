@@ -153,7 +153,7 @@ bool ARtagLocalizer::getARtagPose(IplImage* src, IplImage* dst, int camID)
 
 	float modelViewMatrix_[16];
 	for(int m = 0; m < numMarkers; ++m) {
-		if(markers[m].id != -1 && markers[m].cf >= 0.50) {
+		if(markers[m].id != -1 && markers[m].cf >= 0.75) {
 			tracker->calcOpenGLMatrixFromMarker(&markers[m], patternCenter_, patternWidth_, modelViewMatrix_);
 			float x = modelViewMatrix_[12] / 1000.0;
 			float y = modelViewMatrix_[13] / 1000.0;
