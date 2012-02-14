@@ -7,6 +7,7 @@
 #include <termios.h>
 #include <fcntl.h>
 #include <poll.h>
+#include <errno.h>
 
 #include "Create.h"
 
@@ -259,7 +260,10 @@ int Create::RunTCPListener()
 		}
 		pthread_mutex_unlock(&_serialMutex);
 
-		if (bufLength < 0) printf("ERROR: recvfrom\n");
+		if (bufLength < 0) 
+		{
+			printf("ERROR: recvfrom %d\n", errno);
+		}
 	}
 	usleep(2000000);
 	close(sock);
