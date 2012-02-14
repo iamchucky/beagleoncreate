@@ -147,7 +147,7 @@ if cameraCalib == 1
     % Show explanation message
     startstr = sprintf('\nStarting camera beacon calibration!\n(NOTE: For calibration, make sure you have good lighting');
 end
-str = strcat(startstr,sprintf('\n(Step %d/%d) Please place the ARtag %gcm (%g feet) away', j, length(TEST_DISTANCES), TEST_DISTANCES(j)*100), TEST_DISTANCES(j)/0.3048);
+str = strcat(startstr,sprintf('\n(Step %d/%d) Please place the ARtag %gcm (%gfeet) away', j, length(TEST_DISTANCES), TEST_DISTANCES(j)*100), TEST_DISTANCES(j)/0.3048);
 set(handles.txtMsg,'String', str);
 
 if cameraCalib == length(TEST_DISTANCES)
@@ -163,7 +163,7 @@ if cameraCalib > 1
         cameraCalib = cameraCalib - 1;
         set(handles.txtMsg,'String', 'There is no ARtag detected in the view, click Next again when there is one.');
     else
-        cam_measured(j) = tag(1).z;
+        cam_measured(j) = tag(1,4);
     end
 
     if cameraCalib == length(TEST_DISTANCES)+1
@@ -227,7 +227,7 @@ if sonarCalib(sonarNum) == 1
     % Show explanation message
     startstr = sprintf('\nStarting sonar calibration!\n(NOTE: For calibration, it is recommended that you use a large, flat\nobject and hold it perpendicular to the direction the sonar sensor is facing.)');
 end
-str = strcat(startstr,sprintf('\nPlease place the object %gcm (%g feet) away from sonar %s', TEST_DISTANCES(j)*100, TEST_DISTANCES(j)/0.3048, sonarName{sonarNum}));
+str = strcat(startstr,sprintf('\nPlease place the object %gcm (%gfeet) away from sonar %s', TEST_DISTANCES(j)*100, TEST_DISTANCES(j)/0.3048, sonarName{sonarNum}));
 set(handles.txtMsg,'String', str);
 
 if sonarCalib(sonarNum) == length(TEST_DISTANCES)
