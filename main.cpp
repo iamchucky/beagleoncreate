@@ -400,7 +400,11 @@ void* ListenMessage(void* arg)
 		bufLength = recvfrom(clientsock, buf, MAXPACKETSIZE, 
 				0, (struct sockaddr *)&from, &fromlen);
 
-		if (bufLength == 0) continue;
+		if (bufLength == 0) 
+		{
+			usleep(1000);
+			continue;
+		}
 		if (bufLength < 0) error("recvfrom");
 
 		memcpy((unsigned char*)&packet, buf, 256);
