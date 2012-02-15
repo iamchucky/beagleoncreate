@@ -231,7 +231,7 @@ void* StreamSensorData(void* arg)
 	printf("iRobot Create TCPListner Thread: %d.\n", 
 		pthread_create(&createTCPThread, NULL, CreateTCPListener, NULL));
 		
-	sleep(1000);
+	usleep(1000);
 
 	// run camera
 	pthread_t cameraThread;
@@ -263,7 +263,7 @@ void* StreamSensorData(void* arg)
 			break;
 		}
 		pthread_mutex_unlock( &endMutex );
-		sleep(5);
+		sleep(2);
 	}
 	debugMsg(__func__, "Waiting for threads halt...");
 	isInit = false;
