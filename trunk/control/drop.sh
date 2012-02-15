@@ -8,42 +8,38 @@
 # Toggle a GPIO input
 
 
-echo 9:off >/dev/servodrive0
 
-echo 7:off >/dev/servodrive0
-
-
-echo 9:100 > /dev/servodrive0
+echo 15:100 > /dev/servodrive0
 
 sleep 1
 
-echo 9:off > /dev/servodrive0
+echo 15:off > /dev/servodrive0
 
-echo 7:-88 > /dev/servodrive0
-
-sleep 2
-
-
-
-#Turn push pump on
-
-echo '1' > /dev/gpio143/value
-sleep 5
-
-#Turn push pump off
-echo '0' > /dev/gpio143/value
-
-
-
-echo 7:100 > /dev/servodrive0
+echo 17:-100 > /dev/servodrive0
 
 sleep 3
 
-echo 9:-100 >/dev/servodrive0
+#switch suction pump off
+echo '0' > /sys/class/gpio/gpio131/value
+sleep 1
+
+#switch solenoid valve and push pump on
+echo '1' > /sys/class/gpio/gpio130/value
+sleep 1
+#Switch solenoid valve and push pump off
+echo '0' > /sys/class/gpio/gpio130/value
+
+
+
+echo 17:100 > /dev/servodrive0
+
+sleep 3
+
+echo 15:-100 >/dev/servodrive0
 
 sleep 1
 
 
-echo 7:off > /dev/servodrive0
+echo 17:off > /dev/servodrive0
 
-echo 9:off > /dev/servodrive0
+echo 15:off > /dev/servodrive0

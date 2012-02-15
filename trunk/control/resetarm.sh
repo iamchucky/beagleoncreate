@@ -6,13 +6,17 @@
 
 #
 # Toggle a GPIO input
-echo 9:100 > /dev/servodrive0
+
+echo 15:100 > /dev/servodrive0
 sleep 1
 
-echo 7:100 > /dev/servodrive0
+echo 17:100 > /dev/servodrive0
 sleep 3
-echo 9:-100 > /dev/servodrive0
+echo 15:-100 > /dev/servodrive0
 
-echo 9:off > /dev/servodrive0
+sleep 1
+echo 15:off > /dev/servodrive0
 
-echo 7:off > /dev/servodrive0
+echo 17:off > /dev/servodrive0
+echo '0' > /sys/class/gpio/gpio130/value
+echo '0' > /sys/class/gpio/gpio131/value
