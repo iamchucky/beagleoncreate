@@ -124,7 +124,6 @@ int Camera::Setup()
 {
 	// GStreamer stuff...
 	GError *error = NULL;
-	GstAppSinkCallbacks callbacks;
 	gchar pipeline1_str[256];
 
 	// OpenCV stuff...
@@ -172,12 +171,6 @@ int Camera::Setup()
 		g_printerr("Error creating app-sink\n");
 		return -1;
 	}
-
-	//configuring AppSink's callback  (Pipeline1)
-	callbacks.eos = NULL;
-	callbacks.new_preroll = NULL;
-	callbacks.new_buffer = new_buffer;
-	gst_app_sink_set_callbacks( (GstAppSink*) gst_bin_get_by_name(GST_BIN(pipeline1), APPSINKNAME), &callbacks, NULL, NULL);
 	
 	return 0;
 }
