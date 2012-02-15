@@ -44,6 +44,7 @@ Camera::Camera(int remoteSock, struct sockaddr_in & videoPort, struct sockaddr_i
 	_videoPort = videoPort;
 	_artagPort = artagPort;
 	_isBroadcast = false;
+	_isEnding = false;
 	ar = new ARtagLocalizer();
 }
 
@@ -115,45 +116,6 @@ bool Camera::isBroadcast()
 	return _isBroadcast;
 }
 
-/*! \fn GstFlowReturn new_buffer (GstAppSink *app_sink, gpointer user_data)
- * 	\brief The callback function when a new image is ready in the buffer.
- *  \param app_sink the appsink object used for gstreamer.
- *  \param user_data data that gets passed along the callback.
- *  \return the status of executing this function. GST_FLOW_OK if okay.
- */
-GstFlowReturn new_buffer (GstAppSink *app_sink, gpointer user_data)
-{
-	GstBuffer *buffer = gst_app_sink_pull_buffer( (GstAppSink*) gst_bin_get_by_name( GST_BIN(camera->pipeline1), APPSINKNAME));
-
-	//processing...
-	//handle imageData for processing
-	camera->IMG_data = (uchar*) camera->img->imageData;
-	// copies AppSink buffer data to the uchar vector of IplImage */
-	memcpy(camera->IMG_data, GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
-	// Image buffer is RGB, but OpenCV handles it as BGR, so channels R and B must be swapped */
-	cvConvertImage(camera->img,camera->img,CV_CVTIMG_SWAP_RB);
-	cvCvtColor(camera->img,camera->gray,CV_BGR2GRAY);
-
-	//detect a image ...
-	if (!camera->ar->getARtagPose(camera->gray, camera->img, 0))
-	{
-//		printf("No artag in the view.\n");
-	}
-	camera->SendARtag();
-	
-	if (camera->isBroadcast() && BROADCASTIMG)
-	{
-		IplImage* grayrz = cvCreateImage(cvSize(BIMGWIDTH,BIMGHEIGHT), IPL_DEPTH_8U, 1);
-		cvResize(camera->gray, grayrz);
-		cvThreshold(grayrz, grayrz, ARTHRES, 255, CV_THRESH_BINARY);
-		camera->SendImage(grayrz);
-		cvReleaseImage(&grayrz);
-	}
-	gst_object_unref(buffer);
-	
-	return GST_FLOW_OK;
-}
-
 /*! \fn int Camera::Setup()
  *  \brief Setup function to get ready for the gstreamer.
  *  \return 0 on success, -1 on fail.
@@ -172,9 +134,6 @@ int Camera::Setup()
 	// Initializing GStreamer
 	//g_print("Initializing GStreamer.\n");
 	gst_init(NULL, NULL);
-
-	//g_print("Creating Main Loop.\n");
-	loop = g_main_loop_new(NULL,FALSE);
 
 	// Initializing ARtagLocalizer
 	if (ar->initARtagPose(320, 240, 180.f, ARTHRES) != 0)
@@ -238,8 +197,6 @@ void Camera::CleanUp()
 	cvReleaseImage(&img);
 	cvReleaseImage(&gray);
 
-	//unref mainloop
-	g_main_loop_unref(loop);
 }
 
 /*! \fn int Camera::StreamARtagVideo()
@@ -257,7 +214,36 @@ int Camera::StreamARtagVideo()
 
 	// Iterate
 	printf("Running ARtag detection.\n");
-	g_main_loop_run(loop);
+	while(!_isEnding)
+	{
+		GstBuffer *buffer = gst_app_sink_pull_buffer( (GstAppSink*) gst_bin_get_by_name( GST_BIN(pipeline1), APPSINKNAME));
+
+		//processing...
+		//handle imageData for processing
+		IMG_data = (uchar*) img->imageData;
+		// copies AppSink buffer data to the uchar vector of IplImage */
+		memcpy(IMG_data, GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+		// Image buffer is RGB, but OpenCV handles it as BGR, so channels R and B must be swapped */
+		cvConvertImage(img,img,CV_CVTIMG_SWAP_RB);
+		cvCvtColor(img,gray,CV_BGR2GRAY);
+
+		//detect a image ...
+		if (!ar->getARtagPose(gray, img, 0))
+		{
+	//		printf("No artag in the view.\n");
+		}
+		SendARtag();
+		
+		if (isBroadcast() && BROADCASTIMG)
+		{
+			IplImage* grayrz = cvCreateImage(cvSize(BIMGWIDTH,BIMGHEIGHT), IPL_DEPTH_8U, 1);
+			cvResize(gray, grayrz);
+			cvThreshold(grayrz, grayrz, ARTHRES, 255, CV_THRESH_BINARY);
+			SendImage(grayrz);
+			cvReleaseImage(&grayrz);
+		}
+		gst_buffer_unref(buffer);
+	}
 
 	// Out of the main loop, clean up nicely
 	CleanUp();
@@ -270,5 +256,5 @@ int Camera::StreamARtagVideo()
  */
 void Camera::QuitMainLoop()
 {
-	g_main_loop_quit(loop);
+	_isEnding = true;
 }

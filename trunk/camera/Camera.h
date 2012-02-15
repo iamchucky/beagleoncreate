@@ -42,8 +42,6 @@ public:
 	void SetVideoBroadcast(bool isBroadcast);
 	bool isBroadcast();
 
-	/*! The main loop of gstreamer. */
-	GMainLoop *loop;	
 	/*! Pipeline 1 for gstreamer. */
 	GstElement *pipeline1;
 	/*! Pipeline 2 for gstreamer. */
@@ -65,6 +63,7 @@ private:
 	struct sockaddr_in _videoPort;
 	struct sockaddr_in _artagPort;
 	bool _isBroadcast;
+	bool _isEnding;
 };
 
 #endif
