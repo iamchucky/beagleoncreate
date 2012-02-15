@@ -250,6 +250,12 @@ int Create::RunTCPListener()
 		bzero(&buf, sizeof(buf));
 		bufLength = recvfrom(clientsock, buf, MAXPACKETSIZE, 
 				0, (struct sockaddr *)&from, &fromlen);
+				
+		if (bufLength == 0)
+		{
+			usleep(1000);
+			continue;
+		}
 
 		pthread_mutex_lock(&_serialMutex);
 		_bufLength = bufLength;
