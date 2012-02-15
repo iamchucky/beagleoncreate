@@ -118,6 +118,18 @@ _*This concludes the Beagle on Create User Manual.*_
  * *Address already in use: Cannot bind/connect.*
  If you have just called {{{BeagleShutdown}}}, give it one minute and retry. Ultimately you can restart the MATLAB program.
 
+ * *{{{binding: Address already in use}}}*
+ If you tried to run {{{sudo ./main}}} and you get a message of:
+{{{
+Listener Thread: 0.
+binding: Address already in use
+}}}
+ run:
+{{{
+touch main
+}}}
+ then run {{{sudo ./main}}} again.
+
  * *Host unreachable: connect.*
  Make sure the IP address you put into {{{CreateBeagleInit}}} is a reachable IP address.
  
