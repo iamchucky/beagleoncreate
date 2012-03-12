@@ -39,5 +39,3 @@ The USB webcam can be plugged into the [http://beagleboard.org/ BeagleBoard-xM]'
 
  * main
   The main function that tie all classes together and spawn threads accordingly. At the beginning of main function, a listening-to-message thread (ListenMessage) is created and allow any incoming TCP connection to initiate and parse packets accordingly (ProcessPackets). Once an INIT message is received, a sensor thread is created (MakeConnection) and allow more threads (Camera/Sonar/Create) to be created. The process is then entered into normal operation until an END message is received.
-
-== High-Level Block diagram ==
