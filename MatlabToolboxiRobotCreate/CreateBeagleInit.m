@@ -31,7 +31,8 @@ ports.beacon = udp(remoteHost, artagPort, 'LocalPort', artagPort);
 ports.sonar = udp(remoteHost, sonarPort, 'LocalPort', sonarPort);
 
 % set the timeout for receiving from port
-set(ports.create,'Timeout',td)
+% 5 because the distance and angle reading may take quite long
+set(ports.create,'Timeout',5)	
 set(ports.beacon,'Timeout',0.2)
 set(ports.sonar,'Timeout',0.2)
 
