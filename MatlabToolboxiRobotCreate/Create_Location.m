@@ -57,6 +57,7 @@ u=udp(rh,port,'LocalPort',port);
 
 %open the packet and
 fopen(u);
+onCleanup(@()fclose(u));
 %count = length(N)*19;
 
 %read in packet and get size
@@ -139,6 +140,6 @@ else
     varargout=num2cell(L(:,2:no),1);
 end
 
-fclose(u)
+% fclose(u)
 delete(u)
 clear u
