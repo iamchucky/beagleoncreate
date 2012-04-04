@@ -309,7 +309,7 @@ This will start the beagleoncreate program.
 ----
 
 After the first copy of image is done. Follow this page to copy file system over:
-http://pixhawk.ethz.ch/wiki/tutorials/omap/copy_sd_card
+http://pixhawk.ethz.ch/tutorials/omap/copy_sd_card
 
 *Note: the partition table of the destination sd card should be the same as the source sd card. I am only copying over the 4GB sd card that came with the beagleboard.
 
