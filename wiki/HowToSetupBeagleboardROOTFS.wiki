@@ -40,7 +40,7 @@ Password: (no password)
 }}}
 
 = Setup WiFi network =
-To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}}.
+To prepare for the WiFi adapter driver, copy [http://beagleoncreate.googlecode.com/svn/doc/8192cu.ko 8192cu.ko] and [http://beagleoncreate.googlecode.com/svn/doc/rt3572sta.ko rt3572sta.ko]  and [http://beagleoncreate.googlecode.com/svn/doc/RT2870STA.dat RT2870STA.dat] under microSD card's rootfs in  {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/8192cu.ko}}} and {{{/lib/modules/2.6.32/kernel/drivers/net/wireless/rt3572sta.ko}}} and {{{/etc/Wireless/RT2870STA/RT2870STA.dat}}}.
 You have two options:
 
 1. By giving static IP address to Beagleboard and use [http://winscp.net/eng/download.php WinSCP] to copy it through Ethernet/wired connection:
@@ -77,6 +77,8 @@ reboot
  To copy, run:
 {{{
 cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
+cp rt3572sta.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/drivers/net/wireless/
+cp RT2870STA.dat  /___path/to/microSD/mounting/point___/etc/Wireless/RT2870STA/RT2870STA.dat
 }}}
  After you are done copying the module, unmount and eject the microSD card.
 
@@ -85,6 +87,7 @@ cp 8192cu.ko /___path/to/microSD/mounting/point___/lib/modules/2.6.32/kernel/dri
 In the terminal, type in:
 {{{
 echo 8192cu >> /etc/modutils/8192cu
+echo rt3572sta >> /etc/modutils/rt3572sta
 update-modules
 reboot
 
@@ -95,9 +98,9 @@ After the Beagleboard has rebooted, execute:
 {{{
 lsmod
 }}}
-A list of currently running modules is shown. Make sure {{{8192cu}}} is listed.
+A list of currently running modules is shown. Make sure {{{8192cu}}} and {{{rt3572sta}}} is listed.
 
-After the confirmation of the {{{8192cu}}} module, remove networkmanager:
+After the confirmation of the {{{8192cu}}} and {{{rt3572sta}}} module, remove networkmanager:
 {{{
 opkg remove networkmanager --force-removal-of-dependent-packages
 }}}
@@ -119,6 +122,11 @@ iface wlan0 inet dhcp
 
 auto wlan1
 iface wlan1 inet dhcp
+        wpa-driver wext
+        wpa-conf /etc/wpa_supplicant.conf
+
+auto ra0
+iface ra0 inet dhcp
         wpa-driver wext
         wpa-conf /etc/wpa_supplicant.conf
 }}}
