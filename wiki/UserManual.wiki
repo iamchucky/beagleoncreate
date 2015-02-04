@@ -20,7 +20,7 @@ http://beagleoncreate.googlecode.com/svn/doc/images/setupfrontNew.jpg
 
 http://beagleoncreate.googlecode.com/svn/doc/images/setupbackNew.jpg
 
-http://beagleoncreate.googlecode.com/svn/doc/images/setupcloseup.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupcloseupNew.jpg
 
 = Ready for action =
 
