@@ -75,11 +75,11 @@ CalibGUI(ports);
 
 The calibration GUI provides you a grayscale version of the video stream from the webcam on the Create as well as both ARtag pose measurement and 3 sonar distance measurements as shown in the picture below.
 
-http://beagleoncreate.googlecode.com/svn/doc/images/calibgui.png
+http://beagleoncreate.googlecode.com/svn/doc/images/calibguiNew.png
 
 === Calibrate sonars ===
- # Click on the *Calibrate Left/Front/Right Sonar* button to start the calibration process for of the corresponding sonar. The calibration GUI will then ask you to place a card board in front of the corresponding sonar at 4 known distances. 
- # Click *Next* button when you have placed the card board at the corresponding distance. 
+ # Click on the *Calibrate Left/Front/Right Sonar* button to start the calibration process for of the corresponding sonar. The calibration GUI will then ask you to have the robot with the corresponding sonar facing the wall at 4 known distances. 
+ # Click *Next* button when you have placed the robot at the corresponding distance. 
  # When the sonar reading is NaN, it will ask you to click Next again when the reading is good.
  # After 4 distances are measured for the sonar, Click *Done Calibration* to finish sonar calibration. Three calibration offsets are calculated by the mean of the four measurement offsets with each sonar.
  # The {{{SONAR_OFFSET}}} variable is automatically saved to a file named {{{sonar_calibration.mat}}} so that you can load it in the future.
