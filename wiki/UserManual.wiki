@@ -16,9 +16,9 @@ An operational Beagle on Create setup includes following items:
 
 Please double check that the items listed above is present and is properly connected as shown in the pictures below.
 
-http://beagleoncreate.googlecode.com/svn/doc/images/setupfront.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupfrontNew.jpg
 
-http://beagleoncreate.googlecode.com/svn/doc/images/setupback.jpg
+http://beagleoncreate.googlecode.com/svn/doc/images/setupbackNew.jpg
 
 http://beagleoncreate.googlecode.com/svn/doc/images/setupcloseup.jpg
 
